@@ -15,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*The hmoe page is the login page*/
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
-Auth::routes(['register'=>false]);
+/*Auth Package*/
+Auth::routes();
+//Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/*Home Page*/
 Route::get('/{page}', [AdminController::class, 'index']);
