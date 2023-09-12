@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoicesController;
-use App\Http\Controllers\SectionsController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('invoices', InvoicesController::class);
 
 /*Sections*/
-Route::resource('sections', SectionsController::class);
+Route::resource('sections', SectionController::class);
+
+/*Products*/
+Route::resource('products', ProductController::class);
+
 /*Home Page*/
 Route::get('/{page}', [AdminController::class, 'index']);

@@ -7,7 +7,7 @@ use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SectionsController extends Controller
+class SectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,16 +31,13 @@ class SectionsController extends Controller
      */
     public function store(addSection $request)
     {
-        $validated = $request->validated();
-        if ($validated) {
-            Section::create([
-                'section_name' => $request->section_name,
-                'description' => $request->description,
-                'created_by' => Auth::user()->name
-            ]);
-            session()->flash('add', 'تم الاضافة بنجاح');
-            return redirect('/sections');
-        }
+        Section::create([
+            'section_name' => $request->section_name,
+            'description' => $request->description,
+            'created_by' => Auth::user()->name
+        ]);
+        session()->flash('add', 'تم الاضافة بنجاح');
+        return redirect('/sections');
     }
 
     /**

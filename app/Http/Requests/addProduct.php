@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
 
-class addSection extends FormRequest
+class addProduct extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,6 +13,7 @@ class addSection extends FormRequest
     {
         return true;
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,16 +22,17 @@ class addSection extends FormRequest
     public function rules(): array
     {
         return [
-            'section_name' => 'required|unique:sections,section_name',
+            'product_name' => 'required',
+            'section_id' => 'required',
             'description' => 'required'
         ];
     }
     public function messages(): array
     {
         return [
-            'section_name.required' => 'يرجى ادخال اسم القسم',
-            'section_name.unique' => 'اسم الفسم مسحل مسبقا',
-            'description.required' => 'يرجى ادخال وصف القسم'
+            'product_name' => 'يرجى ادخال اسم المنتج',
+            'section_id' => 'يرجى اختيار القسم',
+            'description' => 'يرجى ادخال الوصف الخاص بالمنتج'
         ];
     }
 }
