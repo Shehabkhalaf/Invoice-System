@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\addSection;
-use App\Models\sections;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +14,7 @@ class SectionsController extends Controller
      */
     public function index()
     {
-        $sections = sections::all();
+        $sections = Section::all();
         return view('sections.sections', compact('sections'));
     }
 
@@ -33,7 +33,7 @@ class SectionsController extends Controller
     {
         $validated = $request->validated();
         if ($validated) {
-            sections::create([
+            Section::create([
                 'section_name' => $request->section_name,
                 'description' => $request->description,
                 'created_by' => Auth::user()->name
@@ -46,7 +46,7 @@ class SectionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(sections $sections)
+    public function show(Section $sections)
     {
         //
     }
@@ -54,7 +54,7 @@ class SectionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(sections $sections)
+    public function edit(Section $sections)
     {
         //
     }
@@ -64,7 +64,7 @@ class SectionsController extends Controller
      */
     public function update(Request $request)
     {
-        $section = sections::findOrfail($request->id);
+        $section = Section::findOrfail($request->id);
         /*This is my solution for the unique name problem (Validation)*/
         $same_name = $request->section_name == $section->section_name ? true : false;
         if ($same_name) {
@@ -105,7 +105,7 @@ class SectionsController extends Controller
      */
     public function destroy(Request $request)
     {
-        $deleted = sections::destroy($request->id);
+        $deleted = Section::destroy($request->id);
         if ($deleted) {
             session()->flash('delete', 'تم حذف القسم بنجاح');
             return redirect('/sections');
